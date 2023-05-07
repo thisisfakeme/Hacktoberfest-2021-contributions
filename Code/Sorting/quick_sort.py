@@ -1,35 +1,28 @@
-# Python program for implementation of Quicksort Sort
+from typing import List
 
-def partition(arr, low, high):
-	i = (low-1)		 
-	pivot = arr[high]	
+def selection_sort(arr: List[int]) -> None:
+    """
+    Sorts a list of integers in ascending order using the Selection Sort algorithm.
 
-	for j in range(low, high):
+    :param arr: a list of integers to be sorted in place
+    """
+    n = len(arr)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
 
-		if arr[j] <= pivot:
+# Example usage
+if __name__ == "__main__":
+    A = [64, 25, 12, 22, 11]
+    selection_sort(A)
+    print("Sorted array:", " ".join(str(x) for x in A))
 
-			i = i+1
-			arr[i], arr[j] = arr[j], arr[i]
-
-	arr[i+1], arr[high] = arr[high], arr[i+1]
-	return (i+1)
-
-def quickSort(arr, low, high):
-	if len(arr) == 1:
-		return arr
-	if low < high:
-
-		pi = partition(arr, low, high)
-
-		quickSort(arr, low, pi-1)
-		quickSort(arr, pi+1, high)
-
-
-
-arr = [10, 7, 8, 15, 1, 5]
-n = len(arr)
-quickSort(arr, 0, n-1)
-print("Sorted Array is:")
-for i in range(n):
-	print("%d" % arr[i]),
-
+"""
+Example usage:
+A = [64, 25, 12, 22, 11]
+selection_sort(A)
+print("Sorted array:", " ".join(str(x) for x in A))
+""" 
